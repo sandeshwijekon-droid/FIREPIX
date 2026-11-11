@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c0b10" />
+  <title>FIREPIX — Photo Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span><span>FIRE<span>PIX</span></span><small>PHOTO STUDIO</small></a>
+    <div class="top-actions">
+      <span class="local-tag"><i></i> 100% LOCAL EDITING</span>
+      <button id="resetAll" class="ghost-btn">Reset edits</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="intro">
+      <div class="eyebrow"><span></span> YOUR CREATIVE SPACE</div>
+      <h1>Make every photo<br/><em>🔥 unforgettable.</em></h1>
+      <p>Upload. Tune. Create. Your photos stay on your device.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="preview-panel panel">
+        <div class="panel-head">
+          <div><span class="tiny-label">LIVE CANVAS</span><h2>Preview</h2></div>
+          <div class="preview-actions">
+            <button id="compareBtn" class="small-btn" disabled>Hold to compare</button>
+            <button id="fitBtn" class="icon-btn" title="Fit image">⤢</button>
+          </div>
+        </div>
+        <div id="dropZone" class="drop-zone">
+          <div id="emptyState" class="empty-state">
+            <div class="upload-symbol">＋</div>
+            <h3>Drop your photo here</h3>
+            <p>or choose an image from your device</p>
+            <label class="upload-btn" for="fileInput">Choose photo <span>↗</span></label>
+            <small>JPG · PNG · WEBP</small>
+          </div>
+          <canvas id="canvas" aria-label="Edited photo preview"></canvas>
+          <div id="imageInfo" class="image-info"></div>
+        </div>
+        <div class="preview-footer">
+          <span id="statusText">Waiting for your photo</span>
+          <span>FIREPIX <b>•</b> STUDIO</span>
+        </div>
+      </div>
+
+      <aside class="tools-panel panel">
+        <div class="panel-head tools-title"><div><span class="tiny-label">CONTROL ROOM</span><h2>Edit tools</h2></div><span class="spark">✦</span></div>
+        <div class="tool-tabs">
+          <button class="tab active" data-tab="adjust">Adjust</button>
+          <button class="tab" data-tab="looks">Looks</button>
+          <button class="tab" data-tab="transform">Transform</button>
+        </div>
+
+        <div class="tab-content active" id="adjust">
+          <div class="section-label">LIGHT & COLOR <span>01</span></div>
+          <div class="slider-control"><div><label for="brightness">Brightness</label><output id="brightnessVal">100%</output></div><input id="brightness" type="range" min="0" max="200" value="100"></div>
+          <div class="slider-control"><div><label for="contrast">Contrast</label><output id="contrastVal">100%</output></div><input id="contrast" type="range" min="0" max="200" value="100"></div>
+          <div class="slider-control"><div><label for="saturation">Saturation</label><output id="saturationVal">100%</output></div><input id="saturation" type="range" min="0" max="200" value="100"></div>
+          <div class="slider-control"><div><label for="warmth">Warmth</label><output id="warmthVal">0</output></div><input id="warmth" type="range" min="-100" max="100" value="0"></div>
+          <div class="slider-control"><div><label for="blur">Soft focus</label><output id="blurVal">0px</output></div><input id="blur" type="range" min="0" max="8" step=".2" value="0"></div>
+          <div class="section-label space-top">DETAIL <span>02</span></div>
+          <div class="slider-control"><div><label for="vignette">Vignette</label><output id="vignetteVal">0%</output></div><input id="vignette" type="range" min="0" max="100" value="0"></div>
+        </div>
+
+        <div class="tab-content" id="looks">
+          <div class="section-label">ONE-TAP COLOR GRADES <span>03</span></div>
+          <div class="presets">
+            <button class="preset active" data-preset="original"><span class="preset-swatch original"></span><b>Original</b><small>Clean</small></button>
+            <button class="preset" data-preset="cinematic"><span class="preset-swatch cinematic"></span><b>Cinema</b><small>Moody</small></button>
+            <button class="preset" data-preset="vibrant"><span class="preset-swatch vibrant"></span><b>Vibrant</b><small>Pop color</small></button>
+            <button class="preset" data-preset="golden"><span class="preset-swatch golden"></span><b>Golden</b><small>Warm glow</small></button>
+            <button class="preset" data-preset="mono"><span class="preset-swatch mono"></span><b>B&W</b><small>Classic</small></button>
+            <button class="preset" data-preset="night"></span><span class="preset-swatch night"></span><b>Night</b><small>Deep tone</small></button>
+          </div>
+          <p class="hint">Choose a look, then fine-tune it in Adjust.</p>
+        </div>
+
+        <div class="tab-content" id="transform">
+          <div class="section-label">COMPOSITION <span>04</span></div>
+          <div class="transform-grid">
+            <button id="rotateLeft">↶ <span>Rotate left</span></button>
+            <button id="rotateRight">↷ <span>Rotate right</span></button>
+            <button id="flipH">⇋ <span>Flip horizontal</span></button>
+            <button id="flipV">⇵ <span>Flip vertical</span></button>
+          </div>
+          <p class="hint">Transformations are applied to your exported image.</p>
+        </div>
+
+        <div class="export-area">
+          <div class="export-note"><span>✦</span><div><b>Ready to export?</b><small>Save your edited photo in full quality.</small></div></div>
+          <button id="downloadBtn" class="download-btn" disabled>Download photo <span>↓</span></button>
+        </div>
+      </aside>
+    </section>
+    <footer><span>DESIGNED FOR CREATORS</span><span>FIREPIX STUDIO <b>© 2026</b></span></footer>
+  </main>
+  <input id="fileInput" type="file" accept="image/*" hidden />
+  <script src="script.js"></script>
+</body>
+</html>
